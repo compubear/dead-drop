@@ -1,0 +1,131 @@
+sources:
+  # === INTELLIGENCE ===
+  - name: CIA FOIA Reading Room
+    url: https://www.cia.gov/readingroom/collection
+    type: scraper
+    pillar: intelligence
+    interval: 1440 # daily
+
+  - name: The Black Vault RSS
+    url: https://www.theblackvault.com/documentarchive/feed/
+    type: rss
+    pillar: intelligence
+    interval: 60
+
+  - name: SpyTalk Substack
+    url: https://spytalk.substack.com/feed
+    type: rss
+    pillar: intelligence
+    interval: 120
+
+  - name: The Intercept
+    url: https://theintercept.com/feed/?rss
+    type: rss
+    pillar: intelligence
+    interval: 60
+
+  # === CONFLICTS ===
+  - name: ACLED Data
+    url: https://acleddata.com/feed/
+    type: rss
+    pillar: conflicts
+    interval: 360
+
+  - name: War on the Rocks
+    url: https://warontherocks.com/feed/
+    type: rss
+    pillar: conflicts
+    interval: 120
+
+  - name: Defense One
+    url: https://www.defenseone.com/rss/
+    type: rss
+    pillar: conflicts
+    interval: 60
+
+  - name: The War Zone
+    url: https://www.thedrive.com/the-war-zone/feed
+    type: rss
+    pillar: conflicts
+    interval: 60
+
+  - name: SIPRI Publications
+    url: https://www.sipri.org/rss.xml
+    type: rss
+    pillar: conflicts
+    interval: 1440
+
+  - name: Congressional Research Service
+    url: https://crsreports.congress.gov/rss/reports
+    type: rss
+    pillar: conflicts
+    interval: 360
+
+  # === AI ===
+  - name: ArXiv cs.AI
+    url: http://export.arxiv.org/rss/cs.AI
+    type: rss
+    pillar: ai
+    interval: 360
+
+  - name: ArXiv cs.CR (Crypto & Security)
+    url: http://export.arxiv.org/rss/cs.CR
+    type: rss
+    pillar: ai
+    interval: 360
+
+  - name: NIST AI
+    url: https://www.nist.gov/artificial-intelligence/rss.xml
+    type: rss
+    pillar: ai
+    interval: 1440
+
+  - name: AI Incident Database
+    url: https://incidentdatabase.ai/rss.xml
+    type: rss
+    pillar: ai
+    interval: 360
+
+  # === CYBER ===
+  - name: CISA Advisories
+    url: https://www.cisa.gov/cybersecurity-advisories/all.xml
+    type: rss
+    pillar: cyber
+    interval: 120
+
+  - name: Krebs on Security
+    url: https://krebsonsecurity.com/feed/
+    type: rss
+    pillar: cyber
+    interval: 120
+
+  - name: The Record
+    url: https://therecord.media/feed
+    type: rss
+    pillar: cyber
+    interval: 60
+
+  - name: BleepingComputer
+    url: https://www.bleepingcomputer.com/feed/
+    type: rss
+    pillar: cyber
+    interval: 60
+
+  - name: Citizen Lab
+    url: https://citizenlab.ca/feed/
+    type: rss
+    pillar: cyber
+    interval: 360
+
+  # === HISTORICAL ===
+  - name: NARA Latest Releases
+    url: https://www.archives.gov/rss/new-items.xml
+    type: rss
+    pillar: historical
+    interval: 1440
+
+  - name: Wilson Center Digital Archive
+    url: https://digitalarchive.wilsoncenter.org/rss
+    type: rss
+    pillar: historical
+    interval: 1440
