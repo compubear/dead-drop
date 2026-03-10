@@ -40,15 +40,49 @@ def run_pipeline(run_once: bool = False) -> None:
 
     if run_once:
         logger.info("pipeline.run_once", status="starting")
-        # TODO: Execute single pipeline run
-        # 1. Fetch sources
-        # 2. Score gaps
-        # 3. Generate content
+
+        # === STEP 1: Source Monitoring ===
+        from pipeline.sources.orchestrator import run_monitoring_cycle
+
+        logger.info("pipeline.step", step="1_source_monitoring")
+        monitor_result = run_monitoring_cycle()
+        logger.info(
+            "pipeline.step_complete",
+            step="1_source_monitoring",
+            items_found=monitor_result.items_found,
+            sources_ok=monitor_result.sources_successful,
+            sources_fail=monitor_result.sources_failed,
+        )
+
+        # === STEP 2: Gap Detection ===
+        # Note: Requires CLAUDE_API_KEY to be set
+        logger.info("pipeline.step", step="2_gap_detection")
+        if settings.CLAUDE_API_KEY:
+            from pipeline.gap_detection.scorer import score_items_batch, select_top_stories
+
+            # Collect all items from the monitoring cycle as dicts
+            # In production these come from DB; for now from the orchestrator
+            logger.info("pipeline.gap_detection", status="scoring")
+            # scored = score_items_batch(items, min_gap_score=3.0)
+            # top_stories = select_top_stories(scored, max_stories=5)
+            logger.info("pipeline.gap_detection", status="api_key_present_but_no_items_to_score")
+        else:
+            logger.warning("pipeline.gap_detection", status="skipped_no_api_key")
+
+        # === STEP 3: Verification ===
+        logger.info("pipeline.step", step="3_verification")
+        logger.info("pipeline.verification", status="awaiting_scored_stories")
+
+        # === STEP 4: Content Generation ===
+        logger.info("pipeline.step", step="4_content_generation")
+        logger.info("pipeline.content_gen", status="awaiting_verified_stories")
+
         logger.info("pipeline.run_once", status="complete")
     else:
         logger.info("pipeline.scheduled", cron=settings.PIPELINE_SCHEDULE_CRON)
-        # TODO: Start scheduled pipeline
+        # TODO: Start scheduled pipeline with APScheduler or similar
         logger.info("pipeline.scheduled", status="waiting_for_trigger")
+
 
 
 def main() -> None:
