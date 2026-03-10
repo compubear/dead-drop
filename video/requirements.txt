@@ -1,0 +1,5 @@
+moviepy>=1.0
+Pillow>=10.0
+elevenlabs>=1.0
+folium>=0.17
+selenium>=4.25
